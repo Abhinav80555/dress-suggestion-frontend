@@ -1,0 +1,69 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .dress-specs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .dress-container {
+    width: 340px;
+    height: min-content;
+  }
+  
+  .dress-image {
+    width: 340px;
+    height: 500px;
+    object-fit: cover;
+  }
+  
+  .dress-name {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .dress-summary {
+    margin-top: 0;
+  }
+  
+  .dress-color {
+    font-size: 18px;
+  }
+  
+  .dress-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 16px;
+  }
+  
+  .dress-detail-container {
+    max-width: 800px;
+  }
+  .add-dress-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .route-container {
+    padding: 24px 12px;
+  }
+  .App {
+    margin: 0;
+    padding: 0;
+  }
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .not-found {
+    width:50%;
+    height:70vh;
+  }
+  
+  
