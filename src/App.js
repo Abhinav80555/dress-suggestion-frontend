@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Button from "@mui/material/Button";
@@ -9,6 +10,11 @@ import { NotFound } from './components/NotFound';
 import { DressDetails } from './components/DressDetails';
 import { AddDress, DressList } from './components/DressList';
 import { Home } from './pages/Home';
+import Paper from '@mui/material/Paper';
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+
+      
 const initialdresslist=[
   {
   id: "100",
@@ -103,10 +109,24 @@ const initialdresslist=[
 
   ]
 
+  
+
+ 
+
 function App() {
   const navigate=useNavigate();
   const [dressList,setDressList]=useState(initialdresslist);
+  const [mode,setMode]=useState('light');
+  const theme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
   return (
+
+    <ThemeProvider theme={theme}>
+      <Paper elevation={4} style={{minHeight:"100vh"}}>
     <div className="App">
 
 <AppBar position="static">
@@ -122,6 +142,16 @@ function App() {
               </Button>
               <Button color="inherit" onClick={() => navigate("/color-game")}>
                 Color Game
+              </Button>
+              <Button
+                style={{ marginLeft: "auto" }}
+                startIcon={
+                  mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
+                }
+                color="inherit"
+                onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+              >
+                {mode === "dark" ? "light" : "dark"} mode
               </Button>
               
             </Toolbar>
@@ -139,7 +169,7 @@ function App() {
 
 </Routes>
 
-    </div>
+    </div> </Paper> </ThemeProvider>
   );
 }
 
