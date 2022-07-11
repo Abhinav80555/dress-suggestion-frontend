@@ -9,7 +9,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
-export function Dresses({ dress, id }) {
+export function Dresses({ dress, id,deleteButton ,editButton}) {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
@@ -30,34 +30,36 @@ export function Dresses({ dress, id }) {
   return (
     <Card className="dress-container">
       <img className="dress-image" src={dress.image} alt={dress.name} />
-<CardContent>
-      <div className="dress-specs">
-        <h2 className="dress-name">
-          {dress.dressname}{" "}
-          <IconButton
-            color="primary"
-            aria-label="info"
-            onClick={() => navigate("/dresses/" + id)}
-          >
-            {<InfoIcon />}
-          </IconButton>
-          <IconButton
-            color="primary"
-            aria-label="exand"
-            onClick={() => setShow(!show)}
-          >
-            {show ? <ExpandLessOutlinedIcon /> : <ExpandMoreOutlinedIcon />}
-          </IconButton>
-        </h2>
-        <p className="dress-color" style={styles}>
-          .
+      <CardContent>
+        <div className="dress-specs">
+          <h2 className="dress-name">
+            {dress.dressname}{" "}
+            <IconButton
+              color="primary"
+              aria-label="info"
+              onClick={() => navigate("/dresses/" + id)}
+            >
+              {<InfoIcon />}
+            </IconButton>
+            <IconButton
+              color="primary"
+              aria-label="exand"
+              onClick={() => setShow(!show)}
+            >
+              {show ? <ExpandLessOutlinedIcon /> : <ExpandMoreOutlinedIcon />}
+            </IconButton>
+          </h2>
+          <p className="dress-color" style={styles}>
+            .
+          </p>
+        </div>
+        <p style={summaryStyles} className="dress-summary">
+          {dress.summary}
         </p>
-      </div>
-      <p style={summaryStyles} className="dress-summary">
-        {dress.summary}
-      </p></CardContent>
+      </CardContent>
       <CardActions>
-      <Counter /></CardActions>
+        <Counter />{deleteButton} {editButton}
+      </CardActions>
     </Card>
   );
 }
