@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import * as yup from 'yup';
 import "./App.css";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -8,11 +9,14 @@ import Toolbar from "@mui/material/Toolbar";
 import AddColor from "./components/AddColor/AddColor";
 import { NotFound } from "./components/NotFound";
 import { DressDetails } from "./components/DressDetails";
-import { AddDress, DressList,EditDress } from "./components/DressList";
+import { DressList } from "./components/DressList";
+import { AddDress } from "./components/AddDress";
+import { EditDress } from "./components/EditDress";
 import { Home } from "./pages/Home";
 import Paper from "@mui/material/Paper";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useFormik } from "formik";
 
 function App() {
   const navigate = useNavigate();
@@ -59,6 +63,7 @@ function App() {
             <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dresses" element={<DressList />} />
+            <Route path="/basic-form" element={<BasicForm />} />
             <Route path="/dresses/:dressid" element={<DressDetails />} />
             <Route path="/color-game" element={<AddColor />} />
             <Route path="/dresses/add" element={<AddDress/>}/>
@@ -73,3 +78,24 @@ function App() {
 }
 
 export default App;
+
+
+
+
+function BasicForm(){
+  
+  const {values,handleChange,handleSubmit}=useFormik({
+    initialValues:{email:"abc@gmail.com",password:"123"},
+  onSubmit:(values)=>{
+    console.log(values)
+  },});
+  
+  return(
+    <form onSubmit={handleSubmit} className="user-form">
+    <input type="email" placeholder="Enter email" value={values.email} onChange={handleChange} />
+    <input type="password" placeholder="Enter password" value={values.password} onChange={handleChange} />
+    <button type="submit">Submit</button>
+    <pre>{JSON.stringify(values)}</pre>
+    </form>
+  )
+}
