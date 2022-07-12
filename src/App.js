@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import * as yup from 'yup';
 import "./App.css";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -16,7 +15,7 @@ import { Home } from "./pages/Home";
 import Paper from "@mui/material/Paper";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { useFormik } from "formik";
+import { BasicForm } from "./components/BasicForm";
 
 function App() {
   const navigate = useNavigate();
@@ -82,20 +81,7 @@ export default App;
 
 
 
-function BasicForm(){
-  
-  const {values,handleChange,handleSubmit}=useFormik({
-    initialValues:{email:"abc@gmail.com",password:"123"},
-  onSubmit:(values)=>{
-    console.log(values)
-  },});
-  
-  return(
-    <form onSubmit={handleSubmit} className="user-form">
-    <input type="email" placeholder="Enter email" value={values.email} onChange={handleChange} />
-    <input type="password" placeholder="Enter password" value={values.password} onChange={handleChange} />
-    <button type="submit">Submit</button>
-    <pre>{JSON.stringify(values)}</pre>
-    </form>
-  )
-}
+
+
+
+
