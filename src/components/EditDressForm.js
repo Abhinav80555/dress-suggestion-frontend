@@ -36,10 +36,10 @@ export function EditDressForm({ dress }) {
 
   const editDress = (updatedDress) => {
 
-    fetch(`${API}/dress/${dress.id}`, {
+    fetch(`${API}/dress/${dress._id}`, {
       method: "PUT",
       body: JSON.stringify(updatedDress),
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json"}
     })
       .then(() => navigate("/dresses"));
   };
