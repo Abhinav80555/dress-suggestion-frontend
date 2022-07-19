@@ -30,9 +30,9 @@ const getDress=()=>{
       <div className="dress-list">
         {dressList.map((dr) => (
           <Dresses
-            key={dr.id}
+            key={dr._id}
             dress={dr}
-            id={dr.id}
+            id={dr._id}
             
             
 
@@ -40,7 +40,7 @@ const getDress=()=>{
               <IconButton
                 style={{ marginLeft: "auto" }}
                 color="error"
-                onClick={() => deleteDress(dr.id)}
+                onClick={() => deleteDress(dr._id)}
                 aria-label="delete"
               >
                 <DeleteIcon />
@@ -48,7 +48,7 @@ const getDress=()=>{
             }
             editButton={
               <IconButton
-              onClick={() => navigate(`/dress/edit/${dr.id}`)}
+              onClick={() => navigate(`/dress/edit/${dr._id}`)}
                 color="secondary"
                 aria-label="edit"
               >
