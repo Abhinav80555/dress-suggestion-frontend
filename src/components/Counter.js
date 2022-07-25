@@ -1,40 +1,46 @@
-import React, { useState } from "react";
-import Badge from "@mui/material/Badge";
+import React, { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useNavigate, useParams } from "react-router-dom";
+import { API } from "../pages/global";
 
 function Counter() {
-  // let like=10;
-  const [like, setLike] = useState(0);
-  const [dislike, setDislike] = useState(0);
+    const navigate = useNavigate();
+
+  const [color, setColor] = useState(true);
+  const [whis, setWhis] = useState({});
+
+  const favourStyles = {
+    color: color ? "grey" : "red"
+  };
+  const { dressid } = useParams();
+  const [dressId, setDressId] = useState(null);
+
+
+  function handleClick() {
+        setColor(!color)    
+        fetch(`${API}/whislist/${dressId._id}`, {
+        method: "POST",
+        body: JSON.stringify(dressId),
+        headers: { "Content-Type": "application/json" }
+      })
+        .then((data) => data.json())
+        .then((dr) => console.log(dr))
+      }
 
   return (
     <div>
-      {/* onclick-camelcase */}
-      <IconButton
-        color="primary"
-        aria-label="Like"
-        onClick={() => setLike(like + 1)}
-      >
-        <Badge badgeContent={like} color="primary">
-          <span role="img" aria-label="dislike">
-            &#128077;
-          </span>
-        </Badge>
-      </IconButton>
-
-      <IconButton
-        color="primary"
-        aria-label="Dislike"
-        onClick={() => setDislike(dislike + 1)}
-      >
-        <Badge badgeContent={dislike} color="error">
-          <span role="img" aria-label="dislike">
-            &#128078;
-          </span>
-        </Badge>
+      <IconButton aria-label="whislist" onClick={handleClick}>
+        <span role="img" aria-label="whislist">
+          <FavoriteIcon style={favourStyles} fontSize="large" />
+        </span>
       </IconButton>
     </div>
   );
-}
+  }
+
+
+
+
 
 export default Counter;

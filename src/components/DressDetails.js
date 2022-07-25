@@ -5,17 +5,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { API } from "../pages/global";
 
 export function DressDetails() {
-  const { dressid } = useParams();
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const [dress, setDress] = useState({});
+
   useEffect(() => {
-    fetch(`${API}/dress/${dressid}`, {
+    fetch(`${API}/dress/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())
       .then((dr) => setDress(dr));
-  }, [dressid]);
+  }, [id]);
 
   const styles = {
     backgroundColor: `${dress.color}`,
