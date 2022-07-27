@@ -23,11 +23,12 @@ const getDress=()=>{
     return response;
   })
     .then((data) => data.json())
-    .then((dr) => setDressList(dr));
+    .then((dr) =>setDressList(dr));
+    
 }
 
 
-  useEffect(() =>getDress());
+  useEffect(() =>getDress(),);
 
   const deleteDress = (id) => {
     fetch(`${API}/dress/${id}`, { method: "DELETE" })
@@ -101,7 +102,7 @@ const getDress=()=>{
 <div>
 <h3>You Don't Have Any Favorites</h3>
 <Link to="/dresses">
-<button> Add One</button>
+<button className="color-button"> Add One</button>
     </Link>
 
 </div>
@@ -132,9 +133,11 @@ const handleClickRemove = ()=>{
             dress={dr}
             id={dr._id}
             {...dr}
-        
 
-            deleteButtonW={
+
+           
+            {...user.favorites.includes(user.favorites._id)?(
+           <> deleteButtonW={
               <IconButton
                disabled={loading}
                 style={{ marginLeft: "auto" }}
@@ -144,10 +147,12 @@ const handleClickRemove = ()=>{
               >
                 <DeleteIcon />
               </IconButton>
-            }
+            }</>):(<></>)}
+            
        
           />
         ))}
+        
       </div>
     </div>
   );

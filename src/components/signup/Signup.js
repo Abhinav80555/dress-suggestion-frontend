@@ -1,7 +1,7 @@
-import { useState,useContext } from "react";
+import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
-import { MyContext } from "../../context";
+// import { MyContext } from "../../context";
 import axios from "../../Axios"
 
 
@@ -9,25 +9,34 @@ export function Signup() {
 	const navigate=useNavigate();
 	const[email,setEmail] =useState("");
     const[password,setPassword] = useState("");
-    const{ setUser} = useContext(MyContext);
+    // const{ setUser} = useContext(MyContext);
 	const [error, setError] = useState("");
 	const [msg, setMsg] = useState("");
 
 	
 
-	function handleSubmit(e){
+	async function handleSubmit(e){
 		e.preventDefault();
 		if(!email || !password){
 		  return alert("Please fill out fields");
 		}
-		axios.post("/users",{email,password})
+	await axios.post("/users",{email,password})
 		.then(({data})=>{
-		  setUser(data)
-		  localStorage.setItem("token",data.token);
-		  navigate("/login");
-  
+		//   setUser(data)
+		//   localStorage.setItem("token",data.token);
+		setTimeout(()=>{navigate("/login")},2500)
+		  setMsg("successfull signup")
+         
 		})
-		.catch((error)=>console.warn(error));
+		.catch((error)=> {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				setError("email-id already exit");
+			}
+		});
 	};
 
 	return (

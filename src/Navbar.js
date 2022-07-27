@@ -7,36 +7,55 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { MyContext } from "./context";
+import axios from "./Axios"
 
 export function Navbar(navigate, mode, setMode) {
-  const{user}= useContext(MyContext);
+  const{user, setUser}= useContext(MyContext);
+
+const handleLogout =async(e)=>{
+  e.preventDefault()
+ await axios.post('/logout')
+  .then(()=>{
+    localStorage.removeItem('token')
+    setUser(null);
+    window.location.reload();
+    navigate("/login")
+    
+    
+  })
+}
+
+
   return <AppBar position="static">
     <Toolbar>
-      <Button color="inherit" onClick={() => navigate("/")}>
-        Home
-      </Button>
+      <Button style={{margin:0}} color="inherit" onClick={() => navigate("/")}>Home</Button>
       <Button color="inherit" onClick={() => navigate("/dresses")}>
-        Dress Collections
+      Dresses
       </Button>
       <Button color="inherit" onClick={() => navigate("/dresses/add")}>
-        Add Dress 
+      ADD
       </Button>
       <Button color="inherit" onClick={() => navigate("/color-game")}>
         Color Game
       </Button>
       
-      {user && (<Button
-style={{ marginLeft: "100px" }}
+      {user && (<><Button
+style={{ justifyContent:"center" }}
    color="inherit"
    aria-label="Like"
    onClick={()=>navigate("/whislist")}
  >
    <Badge style={{margin:0}} badgeContent={user.favorites.length} color="error">
-     <span style={{alignItems:"center"}} role="img" aria-label="whislist">Wishlist
+     <span role="img" aria-label="whislist">
     <FavoriteIcon style={{padding:0}} color="#ede7f6" fontSize="large" />
      </span>
    </Badge>
- </Button>)}
+ </Button>
+
+ <Button style={{marginLeft:700}} color="inherit" onClick={handleLogout}>
+        Logout
+      </Button></>)}
+
       <Button
         style={{ marginLeft: "auto" }}
         startIcon={mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
@@ -48,3 +67,6 @@ style={{ marginLeft: "100px" }}
     </Toolbar>
   </AppBar>;
 }
+
+
+

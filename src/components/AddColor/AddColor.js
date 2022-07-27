@@ -1,21 +1,24 @@
 import React,{useState} from 'react'
-
+import TextField from "@mui/material/TextField";
 function AddColor() {
 
-const [color,setColor]=useState('pink');
-const [colorList,setColorList]=useState(['red', 'green', 'blue']);
+const [color,setColor]=useState('');
+const [colorList,setColorList]=useState(['orangered', 'white', 'green']);
 
     const styles= {
-        fontSize:"24px",
-        backgroundColor:color
+        color:color,
+        width:"40%"
     }
+    
   return (
-    <div>
+    <div >
         <div className='add-color'>
-<input onChange={(event)=>setColor(event.target.value)} style={styles} type="text" value={color} placeholder="Enter color"/>
-<button onClick={()=>setColorList([...colorList,color])}>AddColor</button>
+<TextField onChange={(event)=>setColor(event.target.value)} style={styles} type="text" value={color} placeholder="Enter color"/>
+<button className="color-button" onClick={()=>setColorList([...colorList,color])}>Add Color</button>
 </div>
+
 {colorList.map((clr)=>(<ColorBox color={clr}/>))}
+
     </div>
   )
 }
@@ -25,8 +28,9 @@ const [colorList,setColorList]=useState(['red', 'green', 'blue']);
 function ColorBox({color}){
     const styles={
         backgroundColor:color,
-        height:'35px',
-        width:'300px'
+        marginLeft:"60px",
+        height:'55px',
+        width:'90%'
     }
     return(<div style={styles}></div>)
 }

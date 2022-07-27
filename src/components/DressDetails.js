@@ -27,8 +27,18 @@ export function DressDetails() {
     textAlign: "center",
   };
   return (
+<div>
+
+      <iframe
+        width="100%"
+        height="570"
+        src={dress.info}
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
     <div className="dress-detail-container">
-      <img className="dress-image" src={dress.image} alt={dress.name} />
       <div className="dress-specs">
         <h2 className="dress-name">{dress.dressname}</h2>
         <p className="dress-color" style={styles}>
@@ -44,5 +54,7 @@ export function DressDetails() {
         back
       </Button>
     </div>
+    </div>
+
   );
 }

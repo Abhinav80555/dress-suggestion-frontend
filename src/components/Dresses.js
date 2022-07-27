@@ -11,12 +11,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import axios from "../Axios";
 import { MyContext } from "../context";
 
-export function Dresses({ dress, id,deleteButton ,editButton}) {
+export function Dresses({ dress,id,deleteButton ,editButton}) {
 
 
   const{user, setUser}= useContext(MyContext);
   const [loading, setLoading] = useState(false);
-
 
   function handleClickAdd(){
     setLoading(true);

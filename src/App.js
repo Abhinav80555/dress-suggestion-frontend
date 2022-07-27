@@ -22,38 +22,44 @@ function App() {
   const [mode, setMode] = useState("light");
   const theme = createTheme({
     palette: {
+      primary:{main: '#15d3b0'},
       mode: mode,
     },
   });
    
-const {user , setUser}= useContext(MyContext);
+const {user,setUser}= useContext(MyContext);
 useEffect(()=>{
 
  axios.post("/auto-login")
  .then(({data})=>setUser(data));
-
 },);
+
 
   return (
     <>
         <ThemeProvider theme={theme}>
           <Paper elevation={4} style={{ minHeight: "100vh" }}>
             <div className="App">
-             {Navbar(navigate, mode, setMode) }
+            {user==null ? ( <> </> ):(<>{Navbar(navigate, mode, setMode)}</>) }
 
               <div className="route-container">
                 <Routes>
+                
                 {!user&&(<>  <Route path="/signup" exact element={<Signup />} />
-                 <Route path="/login" exact element={<Login />} />
-                 <Route path="/" element={<Navigate replace to="/login" />} /></>)}
-                 {user && ( <> <Route path="/" element={<Home />} />
+                <Route path="/login" exact element={<Login />} />
+                 <Route path="/" element={<Navigate replace to="/login" />} />
+                 </>)}
+
+
+
+                 {user && ( <Route path="/" element={<Home />} />)}
                   <Route path="/dresses" element={<DressList />} />
-                   <Route path="/whislist" element={<Whislist />} />
+                  {user && (  <Route path="/whislist" element={<Whislist />} />)}
                   <Route path="/basic-form" element={<BasicForm />} />
-                  <Route path="/dresses/:dressid" element={<DressDetails />} />
+                  <Route path="/dresses/:id" element={<DressDetails />} />
                   <Route path="/color-game" element={<AddColor />} />
                   <Route path="/dresses/add" element={<AddDress />} />
-                  <Route path="/dress/edit/:id" element={<EditDress />} /></>)}
+                  <Route path="/dress/edit/:id" element={<EditDress />} />
                   <Route path="/404" element={<NotFound />} />
                   <Route path="*" element={<Navigate replace to="/404" />} />
                 </Routes>
@@ -64,5 +70,9 @@ useEffect(()=>{
     </>
   );
 }
+
+
+
+
 
 export default App;

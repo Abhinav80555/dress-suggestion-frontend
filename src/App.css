@@ -66,4 +66,53 @@ body {
     height:70vh;
   }
   
+  .add-color{
+    display:flex;
+    justify-content:center;
+    margin-bottom:10px
+
+  }
   
+  .color-button{
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    border-radius: 20px;
+    width: 130px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #3bb19b;
+   	color: white;
+    cursor: pointer;
+    margin:10px;
+  }
+  .home{
+    background-image:url("https://media.istockphoto.com/vectors/black-dress-on-red-hanger-vector-id1331839686?k=20&m=1331839686&s=612x612&w=0&h=DINhPc52THh-CSjX7Aqc-pjiunmPL20fiBCMpv07Jak=");
+    background-repeat:no-repeat;
+    background-position:center;
+    height:100vh;
+    width:100%;
+    padding:0;
+    margin:0;
+
+  }
+
+  .header{
+    border:4px solid teal;
+    border-radius:4rem;
+    width:30%;
+    padding:10px;
+    padding-left:20px;
+    height:45px;
+    font-family:'Brush Script MT',cursive;
+  }
+
+
+  .content{
+    margin:10px;
+    display:grid;
+    row-gap:30px;
+    font-size:18px;
+    font-weight:bold;
+    font-family:'Brush Script MT',cursive;
+  }

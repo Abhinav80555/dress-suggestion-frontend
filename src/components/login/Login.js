@@ -4,10 +4,11 @@ import styles from "./styles.module.css";
 import { MyContext } from "../../context";
 import axios from "../../Axios"
 
+
 export function Login () {
 	const[email,setEmail] =useState("");
     const [password,setPassword]=useState("");
-	const [error] = useState("");
+	const [error, setError] = useState("");
 	const navigate=useNavigate();
 	const{ setUser} = useContext(MyContext);
 
@@ -20,9 +21,18 @@ export function Login () {
 			.then(({data})=>{
 			  localStorage.setItem("token", data.token);
 			  setUser(data);
-			  navigate("/dresses");
+			  navigate("/")
 			})
-			.catch((error)=>console.warn(error));
+			.catch((error)=> {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					setError("invalid credentials");
+				}
+			}
+		)
 		
 	};
 
@@ -55,6 +65,9 @@ export function Login () {
 							Sign In
 						</button>
 					</form>
+					<p>
+					<u>userId :abc@gmail.com</u><br></br>
+					<u>password :123456</u></p>
 				</div>
 				<div className={styles.right}>
 					<h1>New Here ?</h1>
