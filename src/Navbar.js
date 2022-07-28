@@ -12,17 +12,14 @@ import axios from "./Axios"
 export function Navbar(navigate, mode, setMode) {
   const{user, setUser}= useContext(MyContext);
 
-const handleLogout =async(e)=>{
+const handleLogout =(e)=>{
   e.preventDefault()
- await axios.post('/logout')
+  axios.post('/logout')
   .then(()=>{
     localStorage.removeItem('token')
     setUser(null);
-    window.location.reload();
-    navigate("/login")
-    
-    
-  })
+    setTimeout(()=>{navigate("/login")},0)
+    })
 }
 
 

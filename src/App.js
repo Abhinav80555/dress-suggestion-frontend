@@ -32,7 +32,7 @@ useEffect(()=>{
 
  axios.post("/auto-login")
  .then(({data})=>setUser(data));
-},);
+},[]);
 
 
   return (
@@ -53,13 +53,13 @@ useEffect(()=>{
 
 
                  {user && ( <Route path="/" element={<Home />} />)}
-                  <Route path="/dresses" element={<DressList />} />
+                 {user && (  <Route path="/dresses" element={<DressList />} />)}
                   {user && (  <Route path="/whislist" element={<Whislist />} />)}
                   <Route path="/basic-form" element={<BasicForm />} />
-                  <Route path="/dresses/:id" element={<DressDetails />} />
-                  <Route path="/color-game" element={<AddColor />} />
-                  <Route path="/dresses/add" element={<AddDress />} />
-                  <Route path="/dress/edit/:id" element={<EditDress />} />
+                  {user && (  <Route path="/dresses/:id" element={<DressDetails />} />)}
+                  {user && (  <Route path="/color-game" element={<AddColor />} />)}
+                  {user && (  <Route path="/dresses/add" element={<AddDress />} />)}
+                  {user && (  <Route path="/dress/edit/:id" element={<EditDress />} />)}
                   <Route path="/404" element={<NotFound />} />
                   <Route path="*" element={<Navigate replace to="/404" />} />
                 </Routes>

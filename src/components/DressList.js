@@ -24,11 +24,9 @@ const getDress=()=>{
   })
     .then((data) => data.json())
     .then((dr) =>setDressList(dr));
-    
 }
 
-
-  useEffect(() =>getDress(),);
+  useEffect(() =>getDress(),[]);
 
   const deleteDress = (id) => {
     fetch(`${API}/dress/${id}`, { method: "DELETE" })
