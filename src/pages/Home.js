@@ -4,7 +4,8 @@ export function Home() {
 
   return (
   <div className="home">
-    <h1 className="header">Your's Lovely Closet</h1>
+    <div className="All-content">  
+      <h1 className="header">Your's Lovely Closet</h1>
     <ul>
       <h3 style={{color:"teal"}}><u>What we can do here!</u></h3>
     </ul>
@@ -16,6 +17,8 @@ export function Home() {
       <li>Play Color-Game 🏳️‍🌈</li>
       <li>Add Information about dresses ℹ️</li>
     </ul>
+    </div>
+  
     </div>
   );
 }

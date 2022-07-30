@@ -24,7 +24,7 @@ export function EditDressForm({ dress }) {
 
 
   const { values, handleChange, handleSubmit, errors, touched ,handleBlur} = useFormik({
-    initialValues: {  image:dress.image, dressname:dress.dressname, color:dress.cat, cat:dress.color, summary:dress.summary, info:dress.info  },
+    initialValues: {  image:dress.image, dressname:dress.dressname, color:dress.color, cat:dress.cat, summary:dress.summary, info:dress.info  },
     validationSchema: formValidationSchema,
 
     onSubmit: (values) => {
