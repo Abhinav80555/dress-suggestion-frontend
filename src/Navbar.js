@@ -32,9 +32,9 @@ const handleLogout =(e)=>{
       <Button color="inherit" onClick={() => navigate("/dresses/add")}>
       ADD
       </Button>
-      <Button color="inherit" onClick={() => navigate("/color-game")}>
-        Color Game
-      </Button>
+//       <Button color="inherit" onClick={() => navigate("/color-game")}>
+//         Color Game
+//       </Button>
       
       {user && (<><Button
 style={{ justifyContent:"center" }}
